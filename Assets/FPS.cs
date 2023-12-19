@@ -16,8 +16,6 @@ public class FPS : MonoBehaviour
     controlJuego controlJuego;
     public AudioSource shot;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         controlJuego = GameObject.Find("GameManager").GetComponent<controlJuego>();
@@ -25,7 +23,7 @@ public class FPS : MonoBehaviour
 
         barraVida.value = vidaPlayer;
     }
-//f
+
     void Update()
     {
         float movimientoAdelanteAtras = Input.GetAxis("Vertical") * rapidezDesplazamiento;
@@ -67,7 +65,7 @@ public class FPS : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         //if (collision.gameObject.CompareTag("RestartCollider"))
         // {
@@ -95,6 +93,7 @@ public class FPS : MonoBehaviour
         if (collision.gameObject.CompareTag("Win"))
         {
             controlJuego.Win();
+            Debug.Log("RRR");
         }
     }
     private void OnTriggerEnter(Collider other)

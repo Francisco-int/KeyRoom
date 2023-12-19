@@ -40,6 +40,7 @@ public class controlJuego : MonoBehaviour
     public Animator secondDoorAnimator;
 
     bool gameOver;
+    bool stopCrono;
 
     //public float rangeX;
     //    public float rangeY;
@@ -73,7 +74,7 @@ public class controlJuego : MonoBehaviour
         if (secondKey)
         {
             firstKey = true;
-            if (!cronometro)
+            if (!cronometro && !stopCrono)
             {
                 StartCoroutine(ComenzarCronometro());
                 cronometro = true;
@@ -200,6 +201,8 @@ public class controlJuego : MonoBehaviour
 
     public void Win()
     {
+        Time.timeScale = 0f;
+        gameOver = true;
         gameOverWin.enabled = true;
         gameOverWin.color = Color.green;
         gameOverWin.text = "Pasante";
@@ -218,6 +221,7 @@ public class controlJuego : MonoBehaviour
     {
         secondKey = false;
         secondDoorAnimator.SetBool("OpenDoor", true);
+        stopCrono = true;
     }
     public void ClosedDoor()
     {
